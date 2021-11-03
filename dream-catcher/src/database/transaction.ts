@@ -6,7 +6,9 @@ export const write = async (queryString: string) => {
   const user = secrets.neo_username;
   const password = secrets.neo_password;
 
-  const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
+  const driver = neo4j.driver(uri, neo4j.auth.basic(user, password), {
+    encrypted: "ENCRYPTION_ON",
+  });
   const session = driver.session();
 
   try {

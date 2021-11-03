@@ -6,6 +6,7 @@ import "./App.css";
 import { AuthProvider } from "./context/useAuth";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { Identity } from "./auth/newUser";
+import CreatePost from "./components/CreatePost/CreatePost";
 
 const Routing = () => {
   const [user, setUser] = useState<Identity | null>(
@@ -20,6 +21,9 @@ const Routing = () => {
         <AuthProvider user={user as Identity}>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route exact path="/new">
+            <CreatePost />
           </Route>
         </AuthProvider>
       ) : (
