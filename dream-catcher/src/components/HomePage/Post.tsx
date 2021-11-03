@@ -1,4 +1,4 @@
-import { Theme, Typography, Chip, Grid } from "@mui/material";
+import { Theme, Typography, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { Tags } from "./PostsFeed";
@@ -7,65 +7,66 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     border: "1px solid #aaaaaa",
     padding: theme.spacing(3),
-    paddingBottom: theme.spacing(1),
-    marginBottom: theme.spacing(5),
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+    margin: theme.spacing(3),
     flexDirection: "column",
     justifyContent: "space-between",
+    "& > *": { margin: theme.spacing(2, 0) },
   },
   body: {
+    maxHeight: "200px",
     overflow: "hidden",
-    textOverflow: "ellipsis",
-    WebkitLineClamp: 4,
-    display: "-webkit-box",
-    WebkitBoxOrient: "vertical",
+    WebkitMaskImage: "linear-gradient(180deg,#000 60%,transparent)",
+    // textOverflow: "ellipsis",
+    // WebkitLineClamp: 4,
+    // display: "-webkit-box",
+    // WebkitBoxOrient: "vertical",
   },
-  infoBox: {
+  top: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
   },
   tags: {
-    width: "50%",
     display: "flex",
-    overflowX: "scroll",
   },
   tag: {
-    marginRight: 10,
+    marginRight: `${theme.spacing(1.5)} !important`,
   },
 }));
 
 interface PostProps {
+  title: string;
   body: string;
   timestamp: number;
   tags: Tags[];
 }
 
-const Post = ({ body, timestamp, tags }: PostProps) => {
+const Post = ({ title, body, timestamp, tags }: PostProps) => {
   const styles = useStyles();
   const date = new Date(timestamp);
 
   return (
-    <Grid item xs={6}>
+    <Grid item xs={12}>
       <Box className={styles.container}>
-        <Typography variant="body1" className={styles.body}>
-          {body}
-        </Typography>
-        <Box className={styles.infoBox}>
-          <Box className={styles.tags}>
-            {tags.map((tag, index) => (
-              <Chip
-                className={styles.tag}
-                key={index}
-                label={tag}
-                color="primary"
-              />
-            ))}
-          </Box>
-          <Typography variant="subtitle2">
+        <Box className={styles.top}>
+          <Typography variant="h4">{title}</Typography>
+          <Typography variant="subtitle2" color="textSecondary">
             {date.getHours()}:{date.getMinutes()}:{date.getSeconds()}
           </Typography>
+        </Box>
+        <Box className={styles.body}>
+          <Typography variant="body1">{body}</Typography>
+        </Box>
+        <Box className={styles.tags}>
+          {tags.map((tag, index) => (
+            <Typography
+              key={index}
+              color="textSecondary"
+              className={styles.tag}
+            >
+              #{tag}
+            </Typography>
+          ))}
         </Box>
       </Box>
     </Grid>
