@@ -3,19 +3,18 @@ import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 import { FormEvent, useState } from "react";
 import { createIdentity, Identity } from "../../auth/newUser";
-import { useAuth } from "../../context/useAuth";
 import { write } from "../../database/transaction";
 import { createNode } from "../../database/queryBuilders";
 
 const useStyles: any = makeStyles((_theme: any) => ({
-  container: {},
   content: {
     width: "100%",
     height: "100vh",
     display: "flex",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    "& > *": { margin: "30px !important" },
   },
   form: {
     display: "flex",
@@ -58,12 +57,13 @@ const LandingPage = ({ setUser }: LandingPageProps) => {
   };
 
   return (
-    <Container className={styles.container}>
+    <Container>
       <Box className={styles.content}>
         <Typography variant="h1">Dream Catcher</Typography>
         <form className={styles.form} onSubmit={createAccount}>
           <TextField
             label="Display name"
+            InputLabelProps={{ shrink: true }}
             autoFocus
             required
             value={alias}

@@ -1,4 +1,4 @@
-import { Grid, Theme, Box, List } from "@mui/material";
+import { Grid, Theme, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
 import Post from "./Post";

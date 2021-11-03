@@ -9,7 +9,9 @@ import { Identity } from "./auth/newUser";
 
 const Routing = () => {
   const [user, setUser] = useState<Identity | null>(
-    JSON.parse(localStorage.getItem("user") as string)
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") as string)
+      : null
   );
 
   return (

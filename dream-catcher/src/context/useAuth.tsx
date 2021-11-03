@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { Identity } from "../auth/newUser";
 
 interface AuthContext {

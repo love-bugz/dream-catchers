@@ -1,4 +1,4 @@
-import { Badge, ListItem, Theme, Typography, Chip, Grid } from "@mui/material";
+import { Theme, Typography, Chip, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { Tags } from "./PostsFeed";

@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import Header from "../layout/Header";
 import PostsFeed from "./PostsFeed";
 
