@@ -21,10 +21,18 @@ export const createNode = (
   const key = schema[0].toLowerCase();
 
   let query = `CREATE (${key}:${schema})`;
-  for (let attribute of attributes) {
+  for (const attribute of attributes) {
     const property = Object.keys(attribute)[0];
     const value = attribute[property];
     query += ` SET ${key}.${property} = '${value}'`;
   }
+  return query;
+};
+
+export const getNodes = (schema: string) => {
+  const key = schema[0].toLowerCase();
+
+  const query = `MATCH (${key}:${schema}) RETURN *`;
+
   return query;
 };

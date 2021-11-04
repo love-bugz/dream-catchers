@@ -58,7 +58,7 @@ const Post = ({ title, body, timestamp, tags }: PostProps) => {
           <Typography variant="body1">{body}</Typography>
         </Box>
         <Box className={styles.tags}>
-          {tags.map((tag, index) => (
+          {tags?.map((tag, index) => (
             <Typography
               key={index}
               color="textSecondary"

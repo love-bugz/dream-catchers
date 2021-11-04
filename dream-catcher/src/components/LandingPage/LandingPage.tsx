@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 import { FormEvent, useState } from "react";
 import { createIdentity, Identity } from "../../auth/newUser";
-import { write } from "../../database/transaction";
+import { queryDatabase } from "../../database/transaction";
 import { createNode } from "../../database/queryBuilders";
 
 const useStyles: any = makeStyles((_theme: any) => ({
@@ -45,7 +45,7 @@ const LandingPage = ({ setUser }: LandingPageProps) => {
     const query = createNode("User", attributes);
 
     try {
-      await write(query);
+      await queryDatabase(query);
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
     } catch (err) {

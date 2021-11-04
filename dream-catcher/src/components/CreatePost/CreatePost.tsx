@@ -8,7 +8,6 @@ const HomePage = () => {
     <>
       <Header />
       <Container>
-        <Typography>What did you dream about last night?</Typography>
         <Form />
       </Container>
     </>

@@ -1,11 +1,11 @@
 import neo4j from "neo4j-driver";
 import secrets from "../secrets.json";
 
-export const write = async (queryString: string) => {
-  const uri = secrets.neo_connection_url;
-  const user = secrets.neo_username;
-  const password = secrets.neo_password;
+const uri = secrets.neo_connection_url;
+const user = secrets.neo_username;
+const password = secrets.neo_password;
 
+export const queryDatabase = async (queryString: string) => {
   const driver = neo4j.driver(uri, neo4j.auth.basic(user, password), {
     encrypted: "ENCRYPTION_ON",
   });
