@@ -41,16 +41,11 @@ const LandingPage = ({ setUser }: LandingPageProps) => {
       public: { encPublicKey, verifyKey },
     } = user;
 
+    const attributes = [{ alias }, { encPublicKey }, { verifyKey }];
+    const query = createNode("User", attributes);
+
     try {
-      await fetch(`${process.env.REACT_APP_DB_URL}/users/register`, {
-        body: JSON.stringify({
-          alias: user.public.alias,
-          enc_public_key: user.public.encPublicKey,
-          verify_key: user.public.verifyKey,
-        }), // pass in the alias and public keys
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
+      await queryDatabase(query);
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
     } catch (err) {
