@@ -6,7 +6,7 @@ import { ensureUserSchema } from '../middleware/usersMiddleware';
 
 const router = express.Router();
 
-router.post('/register', ensureUserSchema, async (req, res, next) => {
+router.post('/register', ensureUserSchema, async (_req, res, next) => {
   try {
     const user = res.locals.newUser;
     const userToCreate: UserToCreate = {
@@ -16,7 +16,17 @@ router.post('/register', ensureUserSchema, async (req, res, next) => {
       id: uuid(),
     };
     const newUser: User = await Users.create(userToCreate);
+    console.log('creating new user', newUser);
     res.status(201).json(newUser);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/', async (_req, res, next) => {
+  try {
+    const users = await Users.findAll();
+    res.status(200).json(users);
   } catch (err) {
     next(err);
   }
