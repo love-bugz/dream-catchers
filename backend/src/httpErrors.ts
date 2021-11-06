@@ -21,3 +21,10 @@ export class BadRequest extends HTTPError {
     super(errMsg, 400, 'Bad Request', userMessage);
   }
 }
+
+export class NotFound extends HTTPError {
+  constructor(message?: string, userMessage?: string) {
+    const errMsg = message || 'Entity not found.';
+    super(errMsg, 404, 'Not Found', userMessage);
+  }
+}
