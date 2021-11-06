@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import { Button, TextField, Typography, Box, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router";
+import { HttpClient } from "../../httpHelper/client";
 
 const useStyles = makeStyles((theme: Theme) => ({
   tagsContainer: {
@@ -24,17 +25,18 @@ const Form = () => {
   const [currentTagText, setCurrentTagText] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const history = useHistory();
+  const client = new HttpClient();
 
   const submitPost = async (e: FormEvent) => {
     e.preventDefault();
-    const attributes = [
-      { title: titleText, body: bodyText, createdAt: Date.now(), tags },
-    ];
-    // const query = createNode("Dream", attributes);
     try {
-      // await queryDatabase(query);
+      await client.post("/posts/new", {
+        title: titleText,
+        body: bodyText,
+        tags,
+      });
       console.log("post submitted");
-      history.push("/");
+      history.push("/"); // redirect back to the posts feed
     } catch (error) {
       console.error(error);
       alert(
@@ -60,10 +62,10 @@ const Form = () => {
         value={currentTagText}
         onKeyDown={(e) => {
           if (e.key === " ") {
-            setCurrentTagText("");
             setTags((prevTags) =>
               prevTags.length ? [...prevTags, currentTagText] : [currentTagText]
             );
+            setCurrentTagText("");
           }
         }}
         onChange={(e) => setCurrentTagText(e.target.value)}
