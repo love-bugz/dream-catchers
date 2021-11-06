@@ -1,10 +1,7 @@
 import { Grid, Theme, Box, Fab } from "@mui/material";
-import { AddCircleOutlineOutlined } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import Post from "./Post";
-import { queryDatabase } from "../../database/transaction";
-import { getNodes } from "../../database/queryBuilders";
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -33,15 +30,14 @@ const PostsFeed = () => {
   const [posts, setPosts] = useState<any[]>([]);
 
   useEffect(() => {
-    const query = getNodes("Dream");
-    queryDatabase(query)
-      .then((result) => {
-        console.log("result from query", result);
-        setPosts(result!.records);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    // queryDatabase(query)
+    //   .then((result) => {
+    //     console.log("result from query", result);
+    //     setPosts(result!.records);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
   }, []);
 
   return (

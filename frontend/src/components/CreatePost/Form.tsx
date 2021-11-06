@@ -2,8 +2,6 @@ import { FormEvent, useState } from "react";
 import { Button, TextField, Typography, Box, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router";
-import { createNode } from "../../database/queryBuilders";
-import { queryDatabase } from "../../database/transaction";
 
 const useStyles = makeStyles((theme: Theme) => ({
   tagsContainer: {
@@ -32,9 +30,9 @@ const Form = () => {
     const attributes = [
       { title: titleText, body: bodyText, createdAt: Date.now(), tags },
     ];
-    const query = createNode("Dream", attributes);
+    // const query = createNode("Dream", attributes);
     try {
-      await queryDatabase(query);
+      // await queryDatabase(query);
       console.log("post submitted");
       history.push("/");
     } catch (error) {
