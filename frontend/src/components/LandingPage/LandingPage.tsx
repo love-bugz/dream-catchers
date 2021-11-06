@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 import { FormEvent, useState } from "react";
 import { createIdentity, Identity } from "../../auth/newUser";
+import { HttpClient } from "../../httpHelper/client";
 
 const useStyles: any = makeStyles((_theme: any) => ({
   content: {
@@ -30,6 +31,7 @@ interface LandingPageProps {
 const LandingPage = ({ setUser }: LandingPageProps) => {
   const styles = useStyles();
   const [alias, setAlias] = useState("");
+  const client = new HttpClient();
 
   const createAccount = async (e: FormEvent) => {
     e.preventDefault();
@@ -44,6 +46,13 @@ const LandingPage = ({ setUser }: LandingPageProps) => {
 
     try {
       // await queryDatabase(query);
+    try {
+      const data = await client.post("/users/register", {
+        alias: user.public.alias,
+        enc_public_key: user.public.encPublicKey,
+        verify_key: user.public.verifyKey,
+      });
+      console.log(data);
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
     } catch (err) {
