@@ -1,11 +1,11 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config();
 
-import knex from "knex";
+import knex from 'knex';
 //@ts-ignore
-import config from "../../knexfile";
+import config from '../../knexfile';
 
-const dbEnvironment = process.env.DB_ENV || "development";
+const dbEnvironment = process.env.DB_ENV || 'development';
 
 // @ts-ignore
 export default knex(config[dbEnvironment]);

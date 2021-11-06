@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config();
 
 const config = {
   development: {
-    client: "pg",
+    client: 'pg',
     useNullAsDefault: true,
     pool: {
       min: 2,
@@ -20,15 +20,15 @@ const config = {
       password: process.env.DB_PASS,
     },
     migrations: {
-      directory: "./src/db/migrations",
+      directory: './src/db/migrations',
     },
     seeds: {
-      directory: "./src/db/seeds",
+      directory: './src/db/seeds',
     },
   },
 
   production: {
-    client: "pg",
+    client: 'pg',
     connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
@@ -36,8 +36,8 @@ const config = {
     },
     ssl: true,
     migrations: {
-      tableName: "knex_migrations",
-      directory: "./src/db/migrations",
+      tableName: 'knex_migrations',
+      directory: './src/db/migrations',
     },
   },
 };

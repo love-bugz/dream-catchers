@@ -9,7 +9,14 @@
     "start": "npm run build && node build/index.js",
     "m:make": "npx knex migrate:make",
     "m:up": "npx knex migrate:up",
-    "m:rollback": "npx knex migrate:rollback"
+    "m:rollback": "npx knex migrate:rollback",
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "lint": "eslint . --ext .ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier-format && npm run lint"
+    }
   },
   "keywords": [],
   "author": "",
@@ -35,6 +42,13 @@
     "@types/jsonwebtoken": "^8.5.5",
     "@types/knex": "^0.16.1",
     "@types/node": "^16.11.6",
-    "@types/uuid": "^8.3.1"
+    "@types/uuid": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.4.1"
   }
 }
