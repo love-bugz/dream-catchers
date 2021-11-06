@@ -1,9 +1,10 @@
-import { Grid, Theme, Box, Fab } from "@mui/material";
+import { Grid, Theme, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
+import { HttpClient } from "../../httpHelper/client";
 import Post from "./Post";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((_theme: Theme) => ({
   container: {
     marginTop: 60,
   },
@@ -28,16 +29,15 @@ export interface Post {
 const PostsFeed = () => {
   const styles = useStyles();
   const [posts, setPosts] = useState<any[]>([]);
+  const client = new HttpClient();
 
   useEffect(() => {
-    // queryDatabase(query)
-    //   .then((result) => {
-    //     console.log("result from query", result);
-    //     setPosts(result!.records);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    client
+      .get("/posts")
+      .then(setPosts)
+      .catch((err) => {
+        console.error("error fetching posts", err);
+      });
   }, []);
 
   return (

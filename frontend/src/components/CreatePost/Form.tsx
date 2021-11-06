@@ -33,7 +33,8 @@ const Form = () => {
       await client.post("/posts/new", {
         title: titleText,
         body: bodyText,
-        tags,
+        user_id: "b39b9d8c-2ca4-4b8b-b2c8-cf8f2da762d7",
+        // tags,
       });
       console.log("post submitted");
       history.push("/"); // redirect back to the posts feed

@@ -43,9 +43,9 @@ const LandingPage = ({ setUser }: LandingPageProps) => {
 
     try {
       await client.post("/users/register", {
-        alias: user.public.alias,
-        enc_public_key: user.public.encPublicKey,
-        verify_key: user.public.verifyKey,
+        alias,
+        enc_public_key: encPublicKey,
+        verify_key: verifyKey,
       });
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
