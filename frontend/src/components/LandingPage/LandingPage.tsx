@@ -41,16 +41,12 @@ const LandingPage = ({ setUser }: LandingPageProps) => {
       public: { encPublicKey, verifyKey },
     } = user;
 
-    const attributes = [{ alias }, { encPublicKey }, { verifyKey }];
-    // const query = createNode("User", attributes);
-
     try {
-      const data = await client.post("/users/register", {
+      await client.post("/users/register", {
         alias: user.public.alias,
         enc_public_key: user.public.encPublicKey,
         verify_key: user.public.verifyKey,
       });
-      console.log(data);
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
     } catch (err) {
