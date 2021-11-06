@@ -66,7 +66,6 @@ const LandingPage = ({ setUser }: LandingPageProps) => {
             label="Display name"
             InputLabelProps={{ shrink: true }}
             autoFocus
-            required
             value={alias}
             onChange={(e) => setAlias(e.target.value)}
           />
