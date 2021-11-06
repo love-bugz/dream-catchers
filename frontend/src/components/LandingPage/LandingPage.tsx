@@ -45,8 +45,6 @@ const LandingPage = ({ setUser }: LandingPageProps) => {
     // const query = createNode("User", attributes);
 
     try {
-      // await queryDatabase(query);
-    try {
       const data = await client.post("/users/register", {
         alias: user.public.alias,
         enc_public_key: user.public.encPublicKey,
