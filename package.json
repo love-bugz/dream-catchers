@@ -1,0 +1,13 @@
+{
+  "name": "dream_catcher",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/love-bugz/dream-catchers.git",
+  "author": "Chance Embrey-Farquhar <cembreyfarquhar@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start-client": "(cd frontend/ && npm run start)",
+    "start-server": "(cd backend/ && npm run start",
+    "start": "concurrently 'npm run start-client' 'npm run start-server'"
+  }
+}
