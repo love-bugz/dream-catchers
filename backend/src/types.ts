@@ -21,3 +21,21 @@ export interface Post {
 
 export type PostNew = Pick<Post, 'title' | 'body' | 'user_id'>;
 export type PostToCreate = Omit<Post, 'created_at' | 'updated_at'>;
+
+export interface Tag {
+  id: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export type TagNew = Pick<Tag, 'name'>;
+export type TagToCreate = Omit<Tag, 'created_at' | 'updated_at'>;
+
+export interface PostTag {
+  id: string;
+  post_id: string;
+  tag_id: string;
+}
+
+export type PostResponse = Post & { tags?: string[] };

@@ -8,8 +8,9 @@ class Controller {
     this.table = table; // table name for db table
   }
 
-  findAll() {
-    return this.db(this.table);
+  async findAll(cb?: (...args: any) => any) {
+    const all = await this.db(this.table);
+    return cb ? cb(all) : all;
   }
 
   findOne(queryObj: Record<string, unknown>) {
