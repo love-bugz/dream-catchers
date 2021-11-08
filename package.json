@@ -9,5 +9,8 @@
     "start-client": "(cd frontend/ && npm run start)",
     "start-server": "(cd backend/ && npm run start",
     "start": "concurrently 'npm run start-client' 'npm run start-server'"
+  },
+  "dependencies": {
+    "concurrently": "^6.3.0"
   }
 }
